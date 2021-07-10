@@ -29,6 +29,9 @@ const getProduct = async (): Promise<CartItemType[]> =>
 
 
 const App = () => {
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartitems] = useState([]);
+
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'products',
     getProduct
@@ -54,7 +57,7 @@ const App = () => {
         {/* ? will return undefined if there is no data  */}
     {data?.map(item => (
       <Grid item key={item.id} xs={12} sm={4}>
-        <Item item={item} handleAddToCart={handleAddToCart}></Item>
+        <Item item={item} handleAddToCart={handleAddToCart} />
       </Grid>
     ))}
       </Grid>
